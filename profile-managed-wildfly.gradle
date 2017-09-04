@@ -1,0 +1,11 @@
+// Managed wildfly
+configurations {
+	compileOnly.extendsFrom jee
+}
+
+dependencies {
+     
+    testCompile "org.wildfly.arquillian:wildfly-arquillian-container-managed:${wfArqContainerVersion}"
+    testCompile "org.jboss.arquillian.protocol:arquillian-protocol-servlet"
+}
+

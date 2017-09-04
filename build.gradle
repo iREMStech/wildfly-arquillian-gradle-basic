@@ -1,0 +1,39 @@
+plugins {
+	id 'nebula.dependency-recommender' version '4.3.0' // for managing maven BOMs
+	id 'java'
+}
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+group = 'ansis.irems'
+version = '1.0.0-SNAPSHOT'
+
+repositories {
+    jcenter()
+    mavenCentral()
+}
+
+dependencyRecommendations {
+	mavenBom module: "org.jboss.arquillian:arquillian-bom:${arquillianVersion}"
+}
+
+configurations {
+	cdi
+	jee
+
+	compile.extendsFrom cdi
+}
+
+dependencies {
+	cdi "javax.enterprise:cdi-api:${cdiVersion}"	
+	jee "javax:javaee-api:${javaeeVersion}"	
+	
+	
+    testCompile "junit:junit:${junitVersion}"
+    testCompile "org.jboss.arquillian.junit:arquillian-junit-container"
+}
+
+if (!hasProperty('buildProfile')) ext.buildProfile = 'managed-wildfly'
+apply from: "profile-${buildProfile}.gradle"
+
