@@ -7,15 +7,25 @@
 	<!-- Needed for wildfly-managed and remote-->
 		<defaultProtocol type="Servlet 3.0" />
 
-    <container qualifier="wildfly" default="true">
+    <container qualifier="wildfly-embedded">
         <configuration>
 			<property name="jbossHome">/Users/zoltankegli/wildfly/wildfly-10.1.0.Final</property>
-			<!-- Needed for wildfly-embedded wildfly-managed doesn't like it no need for remote :
-				<property name="modulePath">/Users/zoltankegli/wildfly/wildfly-10.1.0.Final/modules</property>
-			-->
-			<!-- Needed for wildfly-remote standalone junit tests -->			
-			<property name="allowConnectingToRunningServer">true</property>
-			
+			<property name="modulePath">/Users/zoltankegli/wildfly/wildfly-10.1.0.Final/modules</property>
         </configuration>
     </container>
+
+    <container qualifier="wildfly-managed" default="true">
+        <configuration>
+			<property name="jbossHome">/Users/zoltankegli/wildfly/wildfly-10.1.0.Final</property>			
+        </configuration>
+    </container>
+    
+    <container qualifier="wildfly-remote">
+        <configuration>
+			<property name="jbossHome">/Users/zoltankegli/wildfly/wildfly-10.1.0.Final</property>
+			<!-- Needed for wildfly-remote standalone junit tests -->			
+			<property name="allowConnectingToRunningServer">true</property>			
+        </configuration>
+    </container>
+
 </arquillian>

@@ -7,4 +7,5 @@ dependencies {
 
 test {
     systemProperty 'java.util.logging.manager', 'org.jboss.logmanager.LogManager'  
+    systemProperty 'arquillian.launch', 'wildfly-embedded'  
 }
